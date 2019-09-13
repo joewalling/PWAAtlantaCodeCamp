@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery</title>
+  <meta name="description" content="Acknowledgement Form for Dump Truck Dispatcher">
+  <link rel="stylesheet" type="text/css" href="/styles/site.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+  <!-- Adress bar styling -->
+  <meta name="theme-color" content="#5A88C3">
+  <meta name="msapplication-navbutton-color" content="#5A88C3">
+
+  <!-- Reference manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- iOS meta tags and icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Dump Truck Dispatcher">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon-152x152.png">
+
+</head>
+
+<body>
+    <div id="offline" class="hideOfflineNotification">You are currently offline</div>
+
+    <header class="header">
+        <h1>
+            Delivered
+        </h1>
+        <button id="butInstall" aria-label="Install" hidden></button>
+        <button id="butRefresh" aria-label="Refresh"></button>
+    </header>
+
+    <main class="main">
+        <div class='container' id="info">
+            Date/Shift: <span id="dispatch_date"></span>
+            <br />
+            Customer: <span id="dispatch_customer"></span>
+            <br />
+            Load Until Stop: <span id="dispatch_ismultipleloads"></span>
+            <br />
+            Deliver to: <span id="dispatch_deliverto"></span>
+            <br />
+            Route: <span id="dispatch_route"></span>
+            <br />
+            Instructions: <span id="dispatch_deliverynote"></span>
+            <br />
+            <button id="submit" onClick="deliver()">Delivered</button>
+        </div>
+    </main>
+
+    
+    <script src="/scripts/acknowledgement.js"></script>
+
+    <!-- Script to install the app -->
+    <script src="/scripts/install.js"></script>
+
+    <script>
+        // Register service worker.
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/serviceworker.js')
+                    .then((reg) => {
+                        console.log('Service worker registered.', reg);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
